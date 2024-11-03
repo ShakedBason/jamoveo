@@ -7,8 +7,8 @@ const useAuth = (isAdminPage) => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        const isAdmin = localStorage.getItem('isAdmin')
-        console.log(isAdmin);
+        const isAdmin = localStorage.getItem('isAdmin') === 'true';
+
 
         // Check if the user is logged in
         if (!token) {
