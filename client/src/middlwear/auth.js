@@ -24,7 +24,7 @@ const useAuth = (isAdminPage) => {
 
         // If the page is a user page, check if the user is a regular user or admin
         if (!isAdminPage && isAdmin) {
-            navigate('/admin/home');  
+            navigate('/');  
             return;
         }
     }, [isAdminPage, navigate]); // Dependencies include isAdminPage and navigate

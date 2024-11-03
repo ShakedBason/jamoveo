@@ -23,6 +23,12 @@ const LivePage = () => {
   // Check if the title is in Hebrew
   const isHebrewTitle = selectedSong && /[\u0590-\u05FF]/.test(selectedSong.title);
 
+  useEffect(() => {
+    if (!localStorage.getItem('token')||!selectedSong) {
+      navigate('/');
+    }
+  }, [selectedSong, navigate]);
+
   // Automatic scrolling effect
   useEffect(() => {
     let scrollInterval;
