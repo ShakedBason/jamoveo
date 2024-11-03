@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const UserDB = require("../DB/entities/user_entity");
 const RoleDB = require("../DB/entities/role_entity");
