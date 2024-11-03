@@ -4,12 +4,14 @@ import SongsFeed from '../components/SongsFeed';
 import useAuth from '../middlwear/auth';
 import { useSocket } from '../SocketContext'; // Import the socket context
 import Swal from 'sweetalert2';
+import useAuth from '../middlwear/auth';
 
 const ResultsPage = () => {
   useAuth(true);
   const navigate = useNavigate();
   const location = useLocation();
   const { songs } = location.state || { songs: [] };
+  useAuth(true);
 
   // Use the socket from SocketProvider
   const socket = useSocket();

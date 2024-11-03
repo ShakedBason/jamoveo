@@ -13,6 +13,9 @@ const LivePage = () => {
   const { selectedSong } = location.state || { selectedSong: [] };
   const isPlayer = localStorage.getItem('role') === 'player';
   const isAdmin = localStorage.getItem('isAdmin') === 'true';
+  if(!localStorage.getItem('token')||!selectedSong){
+    navigate('./');
+  }
 
   const [isScrolling, setIsScrolling] = useState(false);
   const socket = useSocket(); // Use the singleton socket instance

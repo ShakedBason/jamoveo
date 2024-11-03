@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import '../Style/AppStyle.css';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../middlwear/auth'
+useAuth(true);
 
 const AdminMainPage = () => {
+
   const [filteredSongs, setFilteredSongs] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();

@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import useAuth from '../middlwear/auth';
 
 const UserMainPage = () => {
     const navigate = useNavigate();
+    useAuth(false);
     //using useEffect because using socket is a side affect!
   useEffect(() => {
     const socket = io(process.env.REACT_APP_BACKEND_URL);
