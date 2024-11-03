@@ -19,6 +19,10 @@ app.use('/api', usersRouter);
 
 setupSocket(server);
 
+app.get('/', (req, res) => {
+  res.send('root is working!'); // This response is sent when accessing the root URL
+});
+
 // Database setup
 mongoose.connect(uri, 
   { useNewUrlParser: true,
