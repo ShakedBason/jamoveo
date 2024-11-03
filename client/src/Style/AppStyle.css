@@ -1,0 +1,101 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f8ff;
+  }
+  
+.page-container,
+.login-box {
+  display: flex;               
+  flex-direction: column;     
+  align-items: center;         
+  height: 100vh;              
+  margin: 0 auto;              
+  padding: 20px;              
+  background-color: #f9f9f9;   
+  border-radius: 8px;          
+}
+
+.search-box{
+  display: flex;               
+  align-items: center;        
+  justify-content: center;    
+  height: 100vh;              
+  margin: 0 auto;              
+  padding: 20px;              
+  background-color: #f9f9f9;   
+  border-radius: 8px;          
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.login-box input, 
+.login-box button {               
+  margin-bottom: 10px;        
+}
+
+  h2 {
+    color: #ac4aed;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    margin-top: 20px;;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    color: #914ebb;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #bbdefb;
+    border-radius: 4px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #9d5ea3;
+    color: #fff;
+    border: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  
+  button:hover {
+    background-color: #9d2bb4;
+  }
+  
+  
+  .logo_Mta_Black {
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+    position: relative;
+    right: 20px;
+  
+  }
+  
+  .register-link, .register-button:visited, .register-button:focus, .register-button:active {
+    outline: none;
+    color: #fafafa; /* Maintain a consistent text color */
+    background-color: transparent; /* Maintain a consistent background */
+    text-decoration: none; /* Remove any underline or other text decorations */
+  }
+  
+  .login-link, .login-link:visited, .login-link:focus, .login-link:active {
+    outline: none;
+    color: #2196f3; /* Maintain a consistent text color */
+    text-decoration: none; /* Remove any underline or other text decorations */
+  }
