@@ -16,17 +16,9 @@ const UserRegistrationPage = () => {
     console.log('Registering admin:', username, password, instrument);
     
     if (!validateRegistration(username, password, instrument)) {
-      return; // Early return if validation fails
+      return;
     }
 
-     if (!username || !password || !instrument) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'Please fill in all fields.',
-      });
-      return; 
-    }
 
     try {
       console.log(process.env.REACT_APP_BACKEND_URL);

@@ -2,15 +2,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const UserDB = require("../DB/entities/user_entity");
 const RoleDB = require("../DB/entities/role_entity");
-// Import JSON files
-const heyJudeLyrics = require('../lyrics/hey_jude.json');
-const veechSheloLyrics = require('../lyrics/veech_shelo.json');
-
-const songs = [
-  { id: 1, title: 'Hey jude', artist: 'The Beatles', image: 'heyJude.png', lyrics: heyJudeLyrics },
-  { id: 2, title: 'ואיך שלא', artist: 'אריאל זילבר', image: 'veechShelo.png', lyrics: veechSheloLyrics },
-  { id: 3, title: 'Hey brother ', artist: 'Avicii ', image: 'Avicii.jpg', lyrics: null }
-];
+const songs = require('./SongsMap');
+const path = require('path'); // Add this line to import the path module
+const fs = require('fs').promises;
 const secretKey = 'mySecretKey123';
 
 // Check if a user already exists
@@ -61,6 +55,21 @@ const getSongsSearchResults = async (searchTerm) => {
   return filteredSongs;
 };
 
+const getSongLyrics = async (fileName) => {
+  if (!fileName) {
+    return { success: false, error: 'Lyrics not available for this song' };
+  }
+
+  try {
+    const filePath = path.join(__dirname, '../lyrics', fileName); 
+    const lyrics = await fs.readFile(filePath, 'utf-8');
+    return { success: true, lyrics: JSON.parse(lyrics) };
+  } catch (error) {
+    console.error('Error fetching lyrics:', error);
+    return { success: false, error: 'Failed to load lyrics' };
+  }
+};
+
 // Verify login details and generate a JWT token if valid
 const checkLoginDetails = async (username, password) => {
   try {
@@ -106,5 +115,6 @@ const findOrCreateRole = async (roleInstrument) => {
 module.exports = { 
   registerUser, 
   checkLoginDetails, 
-  getSongsSearchResults 
+  getSongsSearchResults,
+  getSongLyrics
 };

@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import '../Style/AppStyle.css';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../middlwear/auth'
+import DisconnectButton from '../components/DisconnectButton';
 
 const AdminMainPage = () => {
 
@@ -45,7 +46,7 @@ const AdminMainPage = () => {
       }
 
     } catch (error) {
-      console.error('Error during registration:', error);
+      console.error('Error during Searching:', error);
       Swal.fire('Error!', 'Search Action failed. Please try again.', 'error');
     }
   };
@@ -64,6 +65,7 @@ const AdminMainPage = () => {
 
           <button type="submit">search</button>
           </div>
+          <DisconnectButton></DisconnectButton>
         </form>
       </div>
   );

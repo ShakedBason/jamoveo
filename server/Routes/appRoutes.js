@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, checkLoginDetails, getSongsSearchResults } = require('../Utils/UsersUtils');
+const { registerUser, checkLoginDetails, getSongsSearchResults, getSongLyrics } = require('../Utils/UsersUtils');
 const verifyToken = require('../middlewear/auth');
 
-console.log('Imported functions:', { registerUser, checkLoginDetails, getSongsSearchResults });
 
 // Register API call
 router.post('/register', async (req, res) => {
@@ -28,7 +27,6 @@ router.post('/login', async (req, res) => {
     try {
         const result = await checkLoginDetails(username, password);
         if (result.success) {
-            console.log(result.user);
             return res.status(200).json({ token: result.token, user: result.user });
         } else {
             console.log(result.error);
@@ -40,8 +38,26 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
+router.get('/getSongByFileName', verifyToken, async (req, res) => {
+    console.log('reached api');
+    const { fileName } = req.query;
+
+    if (!fileName) {
+        return res.status(400).json({ success: false, error: 'File name is required' });
+    }
+
+    try {
+        const reqSongLyrics = await getSongLyrics(fileName);
+        return res.json({ success: true, lyrics: reqSongLyrics.lyrics });
+    } catch (error) {
+        console.error('Error fetching song:', error);
+        return res.status(500).json({ success: false, error: 'An error occurred while fetching song' });
+    }
+});
+
 router.get('/songs/search', verifyToken,async (req, res) => {
-    const searchTerm = req.query.searchTerm;
+    const {searchTerm} = req.query;
 
     if (!searchTerm) {
         return res.status(400).json({ success: false, error: 'Search term is required' });
@@ -55,6 +71,5 @@ router.get('/songs/search', verifyToken,async (req, res) => {
         return res.status(500).json({ success: false, error: 'An error occurred while fetching songs' });
     }
 });
-
 
 module.exports = router;
